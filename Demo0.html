@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>clear it</title>
+
+
+</head>
+
+<body>
+测试
+<button onclick="test()"> test </button>
+<button onclick="demo()"> demo </button>
+
+<script>
+    var Test = function (a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    };
+
+    var arr = [];
+
+    var test = function () {
+        console.log('start');
+        var lt = new Date().getTime();
+        for (var i = 0; i < 100; i++) {
+            for (var j = 0; j < 100; j++) {
+                for (var k = 0; k < 100; k++) {
+                    void function (i, j, k) {
+                        arr.push(new Test(i, j, k));
+                    }(i, j, k);
+                }
+            }
+        }
+        console.log(new Date().getTime() - lt);
+    };
+
+    var demo = function () {
+        console.log('clear it');
+        arr = null;
+    }
+
+    // 初始内存消耗1.8MB，填充数组后2.99MB，清空数组并GC后2.1MB
+
+
+</script>
+</body>
+
+</html>
